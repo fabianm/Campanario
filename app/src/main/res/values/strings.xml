@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Campanario</string>
+    <string name="txt_title">Centro Comercial Campanario</string>
+    <!-- title of items menu drawer-->
+    <string name="menu_title_drink">Bebidas</string>
+    <string name="menu_title_food">Restaurantes</string>
+    <string name="menu_title_food_drink">Restaurantes y Bebidas</string>
+    <string name="menu_title_home">Hogar</string>
+    <string name="menu_title_technology">Tecnologia</string>
+    <string name="menu_title_home_technology">Hogar y Tecnologia</string>
+    <string name="menu_title_fashion">Moda</string>
+    <string name="menu_title_hypermarket">Hipermercado</string>
+    <string name="menu_title_accessories">Accesorios</string>
+    <string name="menu_title_toyStore">Jugueteria</string>
+    <string name="menu_title_entertainment">Entretenimiento</string>
+    <string name="menu_title_others">Otros Servicios</string>
+    <string name="menu_title_sales">Ofertas</string>
+    <string name="menu_title_events">Eventos</string>
+    <!-- fragment events-->
+    <string name="title_fragment_events">Eventos Centro Comercial</string>
+    <string name="title_events_permanent">Actividades Permanentes</string>
+
+
+
+    <string name="abierto">1</string>
+    <string name="cerrado">0</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
