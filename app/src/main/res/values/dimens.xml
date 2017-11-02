@@ -4,6 +4,8 @@
     <dimen name="textSize_numbers">16dp</dimen>
     <dimen name="textSize_titleEvent">14dp</dimen>
     <dimen name="textSize_dateEvent">12dp</dimen>
+    <dimen name="cover_height">220dp</dimen>
+    <dimen name="cover_width">120dp</dimen>
 
 
 </resources>

@@ -2,6 +2,7 @@
     <string name="app_name">Campanario</string>
     <string name="txt_title">Centro Comercial Campanario</string>
     <!-- title of items menu drawer-->
+    <string name="menu_title_store">Tiendas</string>
     <string name="menu_title_drink">Bebidas</string>
     <string name="menu_title_food">Restaurantes</string>
     <string name="menu_title_food_drink">Restaurantes y Bebidas</string>
@@ -14,12 +15,11 @@
     <string name="menu_title_toyStore">Jugueteria</string>
     <string name="menu_title_entertainment">Entretenimiento</string>
     <string name="menu_title_others">Otros Servicios</string>
-    <string name="menu_title_sales">Ofertas</string>
+    <string name="menu_title_offers">Ofertas</string>
     <string name="menu_title_events">Eventos</string>
     <!-- fragment events-->
     <string name="title_fragment_events">Eventos Centro Comercial</string>
     <string name="title_events_permanent">Actividades Permanentes</string>
-
 
 
     <string name="abierto">1</string>

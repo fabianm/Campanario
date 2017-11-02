@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.fabia.campanario.Fragments.EventsFragment;
+import com.example.fabia.campanario.Fragments.OffersFragment;
 
 public class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -38,6 +39,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Toast toast=null;
+        Fragment fragment;
         switch (item.getItemId()){
             case R.id.item_accessories:
                 toast=Toast.makeText(this,"accesorios",Toast.LENGTH_SHORT);
@@ -60,8 +62,15 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.item_events:
                 toast=Toast.makeText(this,"home- tecnologia",Toast.LENGTH_SHORT);
-                Fragment fragmentEvent=new EventsFragment();
-                replaceFragmentContent(fragmentEvent);
+                 fragment=new EventsFragment();
+                replaceFragmentContent(fragment);
+
+
+                break;
+            case R.id.item_offers:
+                toast=Toast.makeText(this,"home- tecnologia",Toast.LENGTH_SHORT);
+                 fragment=new OffersFragment();
+                replaceFragmentContent(fragment);
 
 
                 break;

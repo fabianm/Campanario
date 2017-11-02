@@ -11,36 +11,46 @@
         android:icon="@drawable/img_drink4"
         android:title="@string/menu_title_drink"
         />-->
+    <item android:id="@+id/item_store"
+        android:icon="@drawable/img_offers"
+        android:title="@string/menu_title_store">
+        <menu >
+            <item
+                android:id="@+id/item_food_drink"
+                android:icon="@drawable/img_food2"
+                android:title="@string/menu_title_food_drink"/>
 
-    <item
-        android:id="@+id/item_food_drink"
-        android:icon="@drawable/img_food2"
-        android:title="@string/menu_title_food_drink"
-        />
+            <item
+                android:id="@+id/item_home_technology"
+                android:icon="@drawable/img_tecnhnology"
+                android:title="@string/menu_title_home_technology"/>
 
-    <item android:id="@+id/item_home_technology"
-    android:icon="@drawable/img_tecnhnology"
-    android:title="@string/menu_title_home_technology"/>
+            <item
+                android:id="@+id/item_fashion"
+                android:icon="@drawable/img_fashion2"
+                android:title="@string/menu_title_fashion"/>
 
-    <item android:id="@+id/item_fashion"
-        android:icon="@drawable/img_fashion2"
-        android:title="@string/menu_title_fashion"/>
+            <item
+                android:id="@+id/item_hypermarket"
+                android:icon="@drawable/img_hypermarket"
+                android:title="@string/menu_title_hypermarket"/>
 
-    <item android:id="@+id/item_hypermarket"
-        android:icon="@drawable/img_hypermarket"
-        android:title="@string/menu_title_hypermarket"/>
+            <item
+                android:id="@+id/item_accessories"
+                android:icon="@drawable/img_accessories"
+                android:title="@string/menu_title_accessories"/>
 
-    <item android:id="@+id/item_accessories"
-        android:icon="@drawable/img_accessories"
-        android:title="@string/menu_title_accessories"/>
+            <item
+                android:id="@+id/item_entertainment"
+                android:icon="@drawable/img_entertainment"
+                android:title="@string/menu_title_entertainment"/>
 
-    <item android:id="@+id/item_entertainment"
-        android:icon="@drawable/img_entertainment"
-        android:title="@string/menu_title_entertainment"/>
-
-    <item android:id="@+id/item_others"
-        android:icon="@drawable/img_others"
-        android:title="@string/menu_title_others"/>
+            <item
+                android:id="@+id/item_others"
+                android:icon="@drawable/img_others"
+                android:title="@string/menu_title_others"/>
+        </menu>
+    </item>
 
        <!-- <ExpandableListView
             android:id="@+id/lvExp"
@@ -50,12 +60,14 @@
 
 
     <item android:id="@+id/item_other2"
-        android:icon="@drawable/img_sales"
-        android:title="@string/menu_title_sales">
+        android:icon="@drawable/img_offers"
+        android:title="@string/menu_title_offers">
         <menu >
             <group android:id="@+id/group2" android:checkableBehavior="single">
-                <item android:id="@+id/submenu1" android:title="SubMenu No. 1" />
-                <item android:id="@+id/submenu2" android:title="SubMenu No. 2" />
+                <item
+                    android:id="@+id/item_offers"
+                    android:icon="@drawable/img_offers"
+                    android:title="@string/menu_title_offers" />
             </group>
         </menu>
     </item>
@@ -69,12 +81,9 @@
             <group android:id="@+id/group3" android:checkableBehavior="single">
                 <item
                     android:id="@+id/item_events"
-                    android:icon="@drawable/img_sales"
-                    android:title="SubMenu No. 1" />
-                <item
-                    android:id="@+id/submenu5"
-                    android:icon="@drawable/img_sales"
-                    android:title="SubMenu No. 2" />
+                    android:icon="@drawable/img_events"
+                    android:title="@string/menu_title_events" />
+
             </group>
         </menu>
     </item>
