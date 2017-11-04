@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.example.fabia.campanario.Models.Event;
 import com.example.fabia.campanario.R;
-import com.example.fabia.campanario.ViewEventHolder;
-import com.example.fabia.campanario.ViewGroupEventHolder;
+import com.example.fabia.campanario.ViewHolders.ViewEventHolder;
+import com.example.fabia.campanario.ViewHolders.ViewGroupEventHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

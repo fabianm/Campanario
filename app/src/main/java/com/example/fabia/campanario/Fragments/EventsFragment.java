@@ -52,13 +52,11 @@ public class EventsFragment extends Fragment {
         HashMap<String, List<Event>> groupEvents=new HashMap<String, List<Event>>();
         ArrayList<Event> eventsHoy=new ArrayList<>();
         eventsHoy.add(new Event(Calendar.getInstance().getTime(), "Hora con dios", "misa dominical con el padre  chichirre", "campanario","https://goo.gl/mP9QQs"));
-        eventsHoy.add(new Event(Calendar.getInstance().getTime(), "Misa1", "misa dominical con el padre  chichirre", "campanario"));
-        eventsHoy.add(new Event(Calendar.getInstance().getTime(), "Misa2", "misa dominical con el padre  chichirre", "campanario"));
-        eventsHoy.add(new Event(Calendar.getInstance().getTime(), "Misa3", "misa dominical con el padre  chichirre", "campanario"));
-        eventsHoy.add(new Event(Calendar.getInstance().getTime(), "Misa4", "misa dominical con el padre  chichirre", "campanario"));
-        eventsHoy.add(new Event(Calendar.getInstance().getTime(), "Misa5", "misa dominical con el padre  chichirre", "campanario"));
+        eventsHoy.add(new Event(Calendar.getInstance().getTime(), "FITNESS CAMPANARIO", "Todos los domingos 9:30am", "campanario","https://campanariopopayan.com/images/agenda/fitness-campanario-1496093232.jpg"));
+        eventsHoy.add(new Event(Calendar.getInstance().getTime(), "CLUB CAMPANERITOS", "Ultimo sabado de cada mes", "campanario","https://campanariopopayan.com/images/agenda/club-campaneritos-1424276981.jpg"));
 
-        groupEvents.put("Eventos Hoy", eventsHoy);
+
+        groupEvents.put("Eventos Permanentes", eventsHoy);
 
         ArrayList<Event> eventsHoy2=new ArrayList<>();
         eventsHoy2.add(new Event(Calendar.getInstance().getTime(), "Misa", "misa dominical con el padre  chichirre", "campanario"));
@@ -68,7 +66,10 @@ public class EventsFragment extends Fragment {
         eventsHoy2.add(new Event(Calendar.getInstance().getTime(), "Misa4", "misa dominical con el padre  chichirre", "campanario"));
         eventsHoy2.add(new Event(Calendar.getInstance().getTime(), "Misa5", "misa dominical con el padre  chichirre", "campanario"));
 
-        groupEvents.put("Eventos mañana", eventsHoy2);
+        groupEvents.put("Eventos", eventsHoy2);
+        ArrayList<Event> eventsHoy3=new ArrayList<>();
+        groupEvents.put("Eventos Pasados", eventsHoy3);
+
 
         return groupEvents;
     }

@@ -1,4 +1,4 @@
-package com.example.fabia.campanario;
+package com.example.fabia.campanario.ViewHolders;
 
 import android.widget.TextView;
 

@@ -1,7 +1,6 @@
 package com.example.fabia.campanario.Adapters;
 
 import android.app.Activity;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.fabia.campanario.Models.Offer;
 import com.example.fabia.campanario.R;
-import com.example.fabia.campanario.ViewOfferHolder;
+import com.example.fabia.campanario.ViewHolders.ViewOfferHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
