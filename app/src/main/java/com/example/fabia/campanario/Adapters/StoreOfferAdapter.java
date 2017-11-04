@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.fabia.campanario.Models.Store;
 import com.example.fabia.campanario.R;
+import com.example.fabia.campanario.ViewHolders.ViewCardHolder;
 import com.example.fabia.campanario.ViewHolders.ViewStoreOfferHolder;
 import com.squareup.picasso.Picasso;
 
@@ -47,6 +48,42 @@ public long getItemId(int i) {
 @Override
 public View getView(int i, View view, ViewGroup viewGroup) {
         View viewResult=view;
+        ViewCardHolder viewStoreHolder;
+        if(viewResult==null){
+                LayoutInflater layoutInflater=this.activity.getLayoutInflater();
+                viewResult=layoutInflater.inflate(R.layout.card_view_store,null);
+                viewStoreHolder= new ViewCardHolder();
+                viewStoreHolder.img_store_card=(ImageView)viewResult.findViewById(R.id.img_store_card);
+                viewStoreHolder.txt_description_store_card=(TextView) viewResult.findViewById(R.id.txt_description_store_card);
+                viewStoreHolder.txt_name_store_card=(TextView) viewResult.findViewById(R.id.txt_name_store_card);
+
+                viewResult.setTag(viewStoreHolder);
+        }else{
+        viewStoreHolder=(ViewCardHolder)viewResult.getTag();
+        }
+        Store tempStore=listStore.get(i);
+        viewStoreHolder.txt_name_store_card.setText(tempStore.getName());
+
+        if(tempStore.getUrlLogo()!=null && !tempStore.getUrlLogo().isEmpty()){
+            Picasso.with(this.activity).load(tempStore.getUrlLogo()).into(viewStoreHolder.img_store_card);
+        }else{
+            Picasso.with(this.activity).load(R.drawable.img_store_default).into(viewStoreHolder.img_store_card);
+        }
+        viewStoreHolder.txt_description_store_card.setText(tempStore.getDescription());
+
+       /* viewStoreHolder..setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                        toggleDetails(view);
+                }
+        });*/
+
+
+
+        return viewResult;
+  }/*@Override
+public View getView(int i, View view, ViewGroup viewGroup) {
+        View viewResult=view;
         ViewStoreOfferHolder viewStoreHolder;
         if(viewResult==null){
                 LayoutInflater layoutInflater=this.activity.getLayoutInflater();
@@ -70,6 +107,6 @@ public View getView(int i, View view, ViewGroup viewGroup) {
 
 
         return viewResult;
-  }
+  }*/
 }
 

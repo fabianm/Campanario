@@ -7,8 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.fabia.campanario.Adapters.OffersAdapter;
@@ -33,6 +37,9 @@ public class OffersFragment extends Fragment {
 
     private GridView gridStores;
 
+    private ViewGroup linearLayoutDetails;
+    private ImageView imageViewExpand;
+    private static final int DURATION = 250;
 
 
     public OffersFragment() {
@@ -54,6 +61,9 @@ public class OffersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View viewOffers=inflater.inflate(R.layout.fragment_offers, container, false);
+
+        linearLayoutDetails=(ViewGroup)viewOffers.findViewById(R.id.content_description_car);
+        imageViewExpand=(ImageView)viewOffers.findViewById(R.id.imageViewExpand);
         coverFlow= (FeatureCoverFlow) viewOffers.findViewById(R.id.coverflow);
         offerAdapter= new OffersAdapter(this.getActivity(),chargeOffers());
         coverFlow.setAdapter(offerAdapter);
@@ -68,7 +78,6 @@ public class OffersFragment extends Fragment {
                 coverFlow.setAdapter(offerAdapter);
             }
         });
-
 
 
         return viewOffers;
@@ -186,4 +195,26 @@ public class OffersFragment extends Fragment {
     }
 
 
+
+
+
+    public void toggleDetails(View view) {
+        if (linearLayoutDetails.getVisibility() == View.GONE) {
+            ExpandAndCollapseViewUtil.expand(linearLayoutDetails, DURATION);
+            imageViewExpand.setImageResource(R.drawable.img_down);
+            rotate(-180.0f);
+        } else {
+            ExpandAndCollapseViewUtil.collapse(linearLayoutDetails, DURATION);
+            imageViewExpand.setImageResource(R.drawable.img_down);
+            rotate(180.0f);
+        }
+    }
+
+    private void rotate(float angle) {
+        Animation animation = new RotateAnimation(0.0f, angle, Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setFillAfter(true);
+        animation.setDuration(DURATION);
+        imageViewExpand.startAnimation(animation);
+    }
 }

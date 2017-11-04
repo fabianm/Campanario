@@ -9,6 +9,8 @@
     <dimen name="textSize_nameStore">20dp</dimen>
     <dimen name="textSize_descriptionOffers">7dp</dimen>
     <dimen name="textSize_nameStoreOffers">12dp</dimen>
+    <dimen name="height_imgCardView">80dp</dimen>
+
 
 
 
