@@ -4,7 +4,6 @@ package com.example.fabia.campanario.Fragments;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.fabia.campanario.Adapters.CustomAdapter;
-import com.example.fabia.campanario.Helper.HttDataHandler;
+import com.example.fabia.campanario.Helpers.HttDataHandler;
 import com.example.fabia.campanario.Models.ChatMo;
 import com.example.fabia.campanario.Models.SimsimiMo;
 import com.example.fabia.campanario.R;

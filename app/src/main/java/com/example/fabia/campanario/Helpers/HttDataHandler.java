@@ -1,4 +1,4 @@
-package com.example.fabia.campanario.Helper;
+package com.example.fabia.campanario.Helpers;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
