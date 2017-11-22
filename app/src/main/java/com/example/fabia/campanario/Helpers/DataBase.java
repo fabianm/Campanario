@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBase extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "databaseCampanario.db";
+    public static final String DATABASE_NAME = "dbCampanario.db";
 
     public static final String TABLE_CATEGORY="category";
     public static final String CATEGORY_ID="category_id";
@@ -25,7 +25,7 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String STORE_DESCRIPTION="store_description";
     public static final String STORE_NAME="store_name";
     public static final String STORE_HOURS="store_business_hours";
-    public static final String STORE_CATEGORY="store_category_id";
+    public static final String STORE_CATEGORY_ID="store_category_id";
     public static final String STORE_TELEPHONE="store_numberTelephone";
     public static final String STORE_WEBPAGE="store_urlWebPage";
 
@@ -33,15 +33,72 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String OFFER_ID = "offer_id";
     public static final String OFFER_STORE_ID = "offer_store_id";
     public static final String OFFER_URL_PHOTO = "offer_url";
-    public static String OFFER_DESCRIPTION = "offer_description";
-    public static String OFFER_DATE="offer_date";
+    public static final String OFFER_DESCRIPTION = "offer_description";
+    public static final String OFFER_DATE_INITIAL="offer_date_initial";
+    public static final String OFFER_DATE_FINAL="offer_date_final";
+
+    public static final String TABLE_EVENT = "event";
+    public static final String EVENT_ID = "event_id";
+    public static final String EVENT_NAME = "event_name";
+    public static final String EVENT_URL_PHOTO = "event_url_photo";
+    public static final String EVENT_DESCRIPTION = "event_description";
+    public static final String EVENT_DATE="event_date";
+    public static final String EVENT_DAYS="event_days";
+
+    public static final String TABLE_NOTIFICATION = "notification";
+    public static final String NOTIFICATION_ID = "notification_id";
+    public static final String NOTIFICATION_NAME = "notification_name";
+    public static final String NOTIFICATION_URL_PHOTO = "notification_url_photo";
+    public static final String NOTIFICATION_DESCRIPTION = "notification_description";
+    public static final String NOTIFICATION_DATE="notification_date";
 
 
-    private static final String SQL_CREATE_ENTITY = "create table " +
-            TABLE_PROMOTION + "(" +
-            PROMOTION_ID + " integer primary key autoincrement, " +
-            PROMOTION_STORE_ID + " text not null, " +
-            ENTITY_NAME + " text not null);";
+    private static final String SQL_CREATE_CATEGORY = "create table " +
+            TABLE_CATEGORY + "(" +
+            CATEGORY_ID + " integer primary key autoincrement, " +
+            CATEGORY_NAME + " text not null, " +
+            CATEGORY_DESCRIPTION + " text);";
+
+    private static final String SQL_CREATE_STORE = "create table " +
+            TABLE_STORE + "(" +
+            STORE_ID + " integer primary key autoincrement, " +
+            STORE_UBICATION + " text not null, " +
+            STORE_DESCRIPTION + " text not null, " +
+            STORE_NAME + " text not null, " +
+            STORE_HOURS + " text not null, " +
+            STORE_TELEPHONE + " text, " +
+            STORE_WEBPAGE + " text, " +
+            STORE_CATEGORY_ID+ " integer not null, "+
+            "FOREIGN KEY ("+STORE_CATEGORY_ID+") REFERENCES "+TABLE_CATEGORY+" ("+CATEGORY_ID+"));";
+
+    private static final String SQL_CREATE_OFFER = "create table " +
+            TABLE_OFFER + "(" +
+            OFFER_ID + " integer primary key autoincrement, " +
+            OFFER_DESCRIPTION + " text not null, " +
+            OFFER_DATE_INITIAL + " date, " +
+            OFFER_DATE_FINAL + " date, " +
+            OFFER_URL_PHOTO + " text, " +
+            OFFER_STORE_ID+ " integer not null, "+
+            "FOREIGN KEY ("+OFFER_STORE_ID+") REFERENCES "+TABLE_STORE+" ("+STORE_ID+"));";
+
+    private static final String SQL_CREATE_EVENT = "create table " +
+            TABLE_EVENT + "(" +
+            EVENT_ID + " integer primary key autoincrement, " +
+            EVENT_NAME + " text not null, " +
+            EVENT_DESCRIPTION + " text not null, " +
+            EVENT_URL_PHOTO + " text, " +
+            EVENT_DATE + " date, " +
+            EVENT_DAYS + " text);";
+
+    private static final String SQL_CREATE_NOTIFICATION = "create table " +
+            TABLE_NOTIFICATION + "(" +
+            NOTIFICATION_ID + " integer primary key autoincrement, " +
+            NOTIFICATION_NAME + " text not null, " +
+            NOTIFICATION_DESCRIPTION + " text not null, " +
+            NOTIFICATION_DATE + " date not null, " +
+            NOTIFICATION_URL_PHOTO + " text);";
+
+
 
     private static DataBase dataBase;
 
@@ -58,7 +115,11 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        sqLiteDatabase.execSQL(SQL_CREATE_CATEGORY);
+        sqLiteDatabase.execSQL(SQL_CREATE_STORE);
+        sqLiteDatabase.execSQL(SQL_CREATE_OFFER);
+        sqLiteDatabase.execSQL(SQL_CREATE_EVENT);
+        sqLiteDatabase.execSQL(SQL_CREATE_NOTIFICATION);
     }
 
     @Override

@@ -1,12 +1,14 @@
 package com.example.fabia.campanario.Models;
 
+import com.orm.SugarRecord;
+
 import java.util.ArrayList;
 
 /**
  * Created by fabia on 2/11/2017.
  */
 
-public class Store {
+public class Store extends SugarRecord{
     private String name;
     private String ubication;
     private String description;

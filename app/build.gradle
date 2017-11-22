@@ -37,4 +37,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     //library carview
     compile 'com.android.support:cardview-v7:26.0.0-alpha1'
+    //library SugarORM
+    compile 'com.github.satyan:sugar:1.5'
 }

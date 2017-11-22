@@ -1,17 +1,22 @@
 package com.example.fabia.campanario.Models;
 
+import com.orm.SugarRecord;
+
 import java.util.Date;
 
 /**
  * Created by fabia on 2/11/2017.
  */
 
-public class Offer {
+public class Offer extends SugarRecord{
     private Date dateInitial;
     private Date dateFinal;
     private String urlPhoto;
     private String description;
     private String store;
+
+    public Offer() {
+    }
 
     public Offer(Date dateInitial, String urlPhoto, String store) {
         this.dateInitial = dateInitial;

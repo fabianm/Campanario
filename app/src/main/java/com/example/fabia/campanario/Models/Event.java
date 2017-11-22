@@ -1,12 +1,14 @@
 package com.example.fabia.campanario.Models;
 
+import com.orm.SugarRecord;
+
 import java.util.Date;
 
 /**
  * Created by fabia on 28/10/2017.
  */
 
-public class Event {
+public class Event extends SugarRecord {
     private Date date;
     private String title;
     private String description;
@@ -15,11 +17,7 @@ public class Event {
 
 
     public Event(){
-        this.title="";
-        this.description="";
-        this.ubication="";
-        this.urlphoto="";
-        this.date=null;
+
     }
 
     public Event(Date date, String title, String description, String ubication) {
