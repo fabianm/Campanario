@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.example.fabia.campanario.Models.ChatMo;
+import com.example.fabia.campanario.ChatMo;
 import com.example.fabia.campanario.R;
 import com.github.library.bubbleview.BubbleTextView;
 

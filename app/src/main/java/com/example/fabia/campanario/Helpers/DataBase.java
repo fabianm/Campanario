@@ -23,11 +23,16 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String STORE_ID="store_id";
     public static final String STORE_UBICATION="store_ubication";
     public static final String STORE_DESCRIPTION="store_description";
+    public static final String STORE_URL_LOGO = "store_url_logo";
     public static final String STORE_NAME="store_name";
     public static final String STORE_HOURS="store_business_hours";
     public static final String STORE_CATEGORY_ID="store_category_id";
     public static final String STORE_TELEPHONE="store_numberTelephone";
     public static final String STORE_WEBPAGE="store_urlWebPage";
+
+    public static final String TABLE_PERTAIN_CATEGORY="pertain_category";
+    public static final String PERTAIN_CATEGORY_ID="category_id";
+    public static final String PERTAIN_STORE_ID="store_id";
 
     public static final String TABLE_OFFER = "offer";
     public static final String OFFER_ID = "offer_id";
@@ -68,6 +73,7 @@ public class DataBase extends SQLiteOpenHelper {
             STORE_HOURS + " text not null, " +
             STORE_TELEPHONE + " text, " +
             STORE_WEBPAGE + " text, " +
+            STORE_URL_LOGO + " text, " +
             STORE_CATEGORY_ID+ " integer not null, "+
             "FOREIGN KEY ("+STORE_CATEGORY_ID+") REFERENCES "+TABLE_CATEGORY+" ("+CATEGORY_ID+"));";
 
@@ -115,11 +121,17 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
         sqLiteDatabase.execSQL(SQL_CREATE_CATEGORY);
+        System.out.println("tabla categoria creada");
         sqLiteDatabase.execSQL(SQL_CREATE_STORE);
+        System.out.println("tabla tienda creada");
         sqLiteDatabase.execSQL(SQL_CREATE_OFFER);
+        System.out.println("tabla ofeta creada");
         sqLiteDatabase.execSQL(SQL_CREATE_EVENT);
+        System.out.println("tabla evento creada");
         sqLiteDatabase.execSQL(SQL_CREATE_NOTIFICATION);
+        System.out.println("tabla notificacion creada");
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.example.fabia.campanario.Adapters.OffersAdapter;
 import com.example.fabia.campanario.Adapters.StoreOfferAdapter;
 import com.example.fabia.campanario.Models.Offer;
 import com.example.fabia.campanario.Models.Store;
+import com.example.fabia.campanario.Persistence.PersistenceData;
 import com.example.fabia.campanario.R;
 import com.example.fabia.campanario.Utilities.StringToDate;
 
@@ -40,6 +41,8 @@ public class OffersFragment extends Fragment {
     private ViewGroup linearLayoutDetails;
     private ImageView imageViewExpand;
     private static final int DURATION = 250;
+
+    private PersistenceData persistenceData;
 
 
     public OffersFragment() {
@@ -65,6 +68,13 @@ public class OffersFragment extends Fragment {
         linearLayoutDetails=(ViewGroup)viewOffers.findViewById(R.id.content_description_car);
         imageViewExpand=(ImageView)viewOffers.findViewById(R.id.imageViewExpand);
         coverFlow= (FeatureCoverFlow) viewOffers.findViewById(R.id.coverflow);
+        persistenceData=new PersistenceData(this.getContext());
+        if(persistenceData.isSaveOffer()){
+            saveOffer();
+        }
+
+
+
         offerAdapter= new OffersAdapter(this.getActivity(),chargeOffers());
         coverFlow.setAdapter(offerAdapter);
         gridStores=(GridView)viewOffers.findViewById(R.id.grid_stores);
@@ -87,7 +97,7 @@ public class OffersFragment extends Fragment {
         ArrayList<Offer> offerList=new ArrayList<>();
 
 
-            Date date = StringToDate.converToDate("30/11/2017");
+           /* Date date = StringToDate.converToDate("30/11/2017");
             offerList.add(new Offer(date,"https://campanariopopayan.com/images/ofertas/postccdigitaljeans109-1509581041.jpg","Studio F","Amamos los Jeans Studio F, solo por HOY llévatelos a $109.900 en nuestras tiendas y tienda online"));
             offerList.add(new Offer(StringToDate.converToDate("6/11/2017"),"https://campanariopopayan.com/images/ofertas/post-1509724508.jpg","Ela","Pagando con tus tarjetas débito o crédito Davivienda recibe 25% OFF en artículos de última colección.*Aplican condiciones y restricciones."));
             offerList.add(new Offer(StringToDate.converToDate("3/12/2017"),"https://campanariopopayan.com/images/ofertas/postlogomerchannov-1509747502.jpg","Ela","¡Te obsequiamos nuestra plancha #CoolHair perfecta para tus viajes! *Aplican condiciones y restricciones."));
@@ -113,7 +123,7 @@ public class OffersFragment extends Fragment {
 
 
 
-
+*/
 
 
 
@@ -131,7 +141,7 @@ public class OffersFragment extends Fragment {
         ArrayList<Store> listStore=new ArrayList<>();
         Date date = StringToDate.converToDate("30/11/2017");
 
-        Offer offer1=new Offer(date,"https://campanariopopayan.com/images/ofertas/postccdigitaljeans109-1509581041.jpg","Studio F","Amamos los Jeans Studio F, solo por HOY llévatelos a $109.900 en nuestras tiendas y tienda online");
+       /* Offer offer1=new Offer(date,"https://campanariopopayan.com/images/ofertas/postccdigitaljeans109-1509581041.jpg","Studio F","Amamos los Jeans Studio F, solo por HOY llévatelos a $109.900 en nuestras tiendas y tienda online");
         Store store1=new Store("Studio F", "8323060", "Local: 94","https://campanariopopayan.com/images/tiendas/tiendas/studio-f-1371581505.jpg");
         store1.addOffer(offer1);
 
@@ -189,10 +199,15 @@ public class OffersFragment extends Fragment {
         listStore.add(store3);
         listStore.add(store4);
         listStore.add(store5);
-        listStore.add(store6);
+        listStore.add(store6);*/
 
         return listStore;
     }
+    public void saveOffer(){
+
+
+    }
+
 
 
 

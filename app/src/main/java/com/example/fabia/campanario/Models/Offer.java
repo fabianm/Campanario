@@ -1,29 +1,37 @@
 package com.example.fabia.campanario.Models;
 
+import com.example.fabia.campanario.Helpers.DataBase;
 import com.orm.SugarRecord;
+import com.orm.dsl.Column;
+import com.orm.dsl.Table;
 
 import java.util.Date;
 
 /**
  * Created by fabia on 2/11/2017.
  */
-
+@Table(name = DataBase.TABLE_OFFER)
 public class Offer extends SugarRecord{
+    @Column(name = DataBase.OFFER_DATE_INITIAL)
     private Date dateInitial;
+    @Column(name = DataBase.OFFER_DATE_FINAL)
     private Date dateFinal;
+    @Column(name = DataBase.OFFER_URL_PHOTO)
     private String urlPhoto;
+    @Column(name = DataBase.OFFER_DESCRIPTION)
     private String description;
-    private String store;
+    @Column(name = DataBase.OFFER_STORE_ID)
+    private Store store;
 
     public Offer() {
     }
 
-    public Offer(Date dateInitial, String urlPhoto, String store) {
+    public Offer(Date dateInitial, String urlPhoto, Store store) {
         this.dateInitial = dateInitial;
         this.urlPhoto = urlPhoto;
         this.store = store;
     }
-    public Offer(Date dateInitial, String urlPhoto, String store, String description) {
+    public Offer(Date dateInitial, String urlPhoto, Store store, String description) {
         this.dateInitial = dateInitial;
         this.urlPhoto = urlPhoto;
         this.store = store;
@@ -31,14 +39,14 @@ public class Offer extends SugarRecord{
     }
 
 
-    public Offer(Date dateInitial, Date dateFinal, String urlPhoto, String store) {
+    public Offer(Date dateInitial, Date dateFinal, String urlPhoto, Store store) {
         this.dateInitial = dateInitial;
         this.dateFinal = dateFinal;
         this.urlPhoto = urlPhoto;
         this.store = store;
     }
 
-    public Offer(Date dateInitial, Date dateFinal, String urlPhoto, String store,String description) {
+    public Offer(Date dateInitial, Date dateFinal, String urlPhoto, Store store,String description) {
         this.dateInitial = dateInitial;
         this.dateFinal = dateFinal;
         this.urlPhoto = urlPhoto;
@@ -78,11 +86,11 @@ public class Offer extends SugarRecord{
         this.description = description;
     }
 
-    public String getStore() {
+    public Store getStore() {
         return store;
     }
 
-    public void setStore(String store) {
+    public void setStore(Store store) {
         this.store = store;
     }
 }

@@ -18,15 +18,19 @@ import com.example.fabia.campanario.Fragments.EventsFragment;
 import com.example.fabia.campanario.Fragments.OffersFragment;
 import com.example.fabia.campanario.Fragments.PQRFragment;
 import com.example.fabia.campanario.Fragments.StoreFragment;
+import com.example.fabia.campanario.Helpers.DataBase;
+import com.orm.SugarContext;
 
 public class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private FragmentManager fragmentManager;
     private  DrawerLayout drawer;
+    private DataBase dataBase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
+       // dataBase=DataBase.getInstance(this);
 
        drawer=(DrawerLayout)findViewById(R.id.drawer);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar_);

@@ -1,4 +1,4 @@
-package com.example.fabia.campanario.Models;
+package com.example.fabia.campanario;
 
 /**
  * Created by DIEGO on 01/11/2017.

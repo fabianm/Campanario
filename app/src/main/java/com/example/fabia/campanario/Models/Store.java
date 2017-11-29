@@ -1,6 +1,10 @@
 package com.example.fabia.campanario.Models;
 
+import com.example.fabia.campanario.Helpers.DataBase;
 import com.orm.SugarRecord;
+import com.orm.dsl.Column;
+import com.orm.dsl.NotNull;
+import com.orm.dsl.Table;
 
 import java.util.ArrayList;
 
@@ -8,27 +12,34 @@ import java.util.ArrayList;
  * Created by fabia on 2/11/2017.
  */
 
+@Table(name = DataBase.TABLE_STORE)
 public class Store extends SugarRecord{
+    @Column(name=DataBase.STORE_NAME)
     private String name;
+    @Column(name=DataBase.STORE_UBICATION)
     private String ubication;
+    @Column(name=DataBase.STORE_DESCRIPTION)
     private String description;
+    @Column(name=DataBase.STORE_URL_LOGO)
     private String urlLogo;
+    @Column(name=DataBase.STORE_HOURS)
     private String business_hours;
-    private ArrayList<Offer> listOffers;
-    private String category;
+
+    @Column(name=DataBase.STORE_TELEPHONE)
     private String numberTelephone;
+    @Column(name=DataBase.STORE_WEBPAGE)
     private String urlWebPage;
 
     public Store(String name) {
         this.name = name;
-        this.listOffers=new ArrayList<>();
+       // this.listOffers=new ArrayList<>();
     }
 
     public Store(String name, String ubication, String urlLogo) {
         this.name = name;
         this.ubication = ubication;
         this.urlLogo = urlLogo;
-        this.listOffers=new ArrayList<>();
+       // this.listOffers=new ArrayList<>();
 
     }
 
@@ -36,7 +47,7 @@ public class Store extends SugarRecord{
         this.name = name;
         this.ubication = ubication;
         this.urlLogo = urlLogo;
-        this.listOffers=new ArrayList<>();
+        //this.listOffers=new ArrayList<>();
         this.numberTelephone=numberTelephone;
 
     }
@@ -46,7 +57,7 @@ public class Store extends SugarRecord{
         this.ubication = ubication;
         this.description = description;
         this.urlLogo = urlLogo;
-        this.listOffers=new ArrayList<>();
+       // this.listOffers=new ArrayList<>();
         this.numberTelephone=numberTelephone;
 
 
@@ -58,7 +69,7 @@ public class Store extends SugarRecord{
         this.description = description;
         this.urlLogo = urlLogo;
         this.business_hours = business_hours;
-        this.listOffers=new ArrayList<>();
+       // this.listOffers=new ArrayList<>();
         this.numberTelephone=numberTelephone;
 
 
@@ -105,24 +116,18 @@ public class Store extends SugarRecord{
     }
 
     public ArrayList<Offer> getListOffers() {
-        return listOffers;
+        return new ArrayList<Offer>();
     }
 
-    public void setListOffers(ArrayList<Offer> listOffers) {
+ /*   public void setListOffers(ArrayList<Offer> listOffers) {
         this.listOffers = listOffers;
     }
 
     public void addOffer(Offer offer){
         this.listOffers.add(offer);
-    }
+    }*/
 
-    public String getCategory() {
-        return category;
-    }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public String getNumberTelephone() {
         return numberTelephone;

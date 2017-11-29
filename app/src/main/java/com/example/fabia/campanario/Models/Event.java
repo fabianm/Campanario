@@ -1,13 +1,15 @@
 package com.example.fabia.campanario.Models;
 
+import com.example.fabia.campanario.Helpers.DataBase;
 import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 
 import java.util.Date;
 
 /**
  * Created by fabia on 28/10/2017.
  */
-
+@Table(name = DataBase.TABLE_CATEGORY)
 public class Event extends SugarRecord {
     private Date date;
     private String title;

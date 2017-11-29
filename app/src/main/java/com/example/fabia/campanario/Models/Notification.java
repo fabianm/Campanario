@@ -1,6 +1,8 @@
 package com.example.fabia.campanario.Models;
 
+import com.example.fabia.campanario.Helpers.DataBase;
 import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
 
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.Date;
  * Created by fabia on 22/11/2017.
  */
 
+@Table(name = DataBase.TABLE_NOTIFICATION)
 public class Notification extends SugarRecord{
     private String name;
     private String description;

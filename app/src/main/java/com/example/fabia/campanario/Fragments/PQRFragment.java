@@ -15,8 +15,8 @@ import android.widget.ListView;
 
 import com.example.fabia.campanario.Adapters.CustomAdapter;
 import com.example.fabia.campanario.Helpers.HttDataHandler;
-import com.example.fabia.campanario.Models.ChatMo;
-import com.example.fabia.campanario.Models.SimsimiMo;
+import com.example.fabia.campanario.ChatMo;
+import com.example.fabia.campanario.SimsimiMo;
 import com.example.fabia.campanario.R;
 import com.google.gson.Gson;
 
