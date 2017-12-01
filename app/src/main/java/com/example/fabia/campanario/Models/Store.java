@@ -122,7 +122,7 @@ public class Store extends SugarRecord{
     }
 
     public List<Offer> getListOffers() {
-        return Offer.find(Offer.class,DataBase.OFFER_ID+" = ? ",getId().toString());
+        return Offer.find(Offer.class,DataBase.OFFER_STORE_ID+" = ? ",getId().toString());
     }
 
  /*   public void setListOffers(ArrayList<Offer> listOffers) {
