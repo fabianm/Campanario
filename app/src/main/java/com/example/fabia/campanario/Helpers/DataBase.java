@@ -1,8 +1,14 @@
 package com.example.fabia.campanario.Helpers;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.fabia.campanario.Models.PertaintoCategory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fabia on 21/11/2017.
@@ -10,7 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "dbCampanario.db";
 
     public static final String TABLE_CATEGORY="category";
@@ -122,7 +128,7 @@ public class DataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL(SQL_CREATE_CATEGORY);
+        /*sqLiteDatabase.execSQL(SQL_CREATE_CATEGORY);
         System.out.println("tabla categoria creada");
         sqLiteDatabase.execSQL(SQL_CREATE_STORE);
         System.out.println("tabla tienda creada");
@@ -131,11 +137,29 @@ public class DataBase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_EVENT);
         System.out.println("tabla evento creada");
         sqLiteDatabase.execSQL(SQL_CREATE_NOTIFICATION);
-        System.out.println("tabla notificacion creada");
+        System.out.println("tabla notificacion creada");*/
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+    public void listPertaintoCategoryList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"id", PERTAIN_STORE_ID, PERTAIN_CATEGORY_ID};
+        List<PertaintoCategory> list = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_PERTAIN_CATEGORY, projection, null, null, null, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    Long nit = cursor.getLong(cursor.getColumnIndex(PERTAIN_STORE_ID));
+                    Long name = cursor.getLong(cursor.getColumnIndex(PERTAIN_CATEGORY_ID));
+                    System.out.println("storeid= "+nit+"categoryid= "+name);
+                    cursor.moveToNext();
+
+                }
+            }
+        }
+        db.close();
     }
 }

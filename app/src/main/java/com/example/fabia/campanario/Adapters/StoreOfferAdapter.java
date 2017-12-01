@@ -27,6 +27,7 @@ private ArrayList<Store> listStore;
 public StoreOfferAdapter(Activity activity, ArrayList<Store> listStore) {
         this.activity = activity;
         this.listStore = listStore;
+        System.out.println("Tamaño de la lista es: "+listStore.size()+"\n********");
 
         }
 

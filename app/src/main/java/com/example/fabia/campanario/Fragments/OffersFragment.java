@@ -17,16 +17,20 @@ import android.widget.Toast;
 
 import com.example.fabia.campanario.Adapters.OffersAdapter;
 import com.example.fabia.campanario.Adapters.StoreOfferAdapter;
+import com.example.fabia.campanario.Helpers.DataBase;
 import com.example.fabia.campanario.Models.Offer;
 import com.example.fabia.campanario.Models.Store;
 import com.example.fabia.campanario.Persistence.PersistenceData;
 import com.example.fabia.campanario.R;
 import com.example.fabia.campanario.Utilities.StringToDate;
+import com.orm.SugarContext;
+import com.orm.util.Collection;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
@@ -64,27 +68,26 @@ public class OffersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View viewOffers=inflater.inflate(R.layout.fragment_offers, container, false);
+        SugarContext.init(getContext());
 
         linearLayoutDetails=(ViewGroup)viewOffers.findViewById(R.id.content_description_car);
         imageViewExpand=(ImageView)viewOffers.findViewById(R.id.imageViewExpand);
         coverFlow= (FeatureCoverFlow) viewOffers.findViewById(R.id.coverflow);
         persistenceData=new PersistenceData(this.getContext());
-        if(persistenceData.isSaveOffer()){
+        if(!persistenceData.isSaveOffer()){
             saveOffer();
         }
 
-
-
-        offerAdapter= new OffersAdapter(this.getActivity(),chargeOffers());
+        offerAdapter= new OffersAdapter(this.getActivity(),(ArrayList<Offer>) chargeOffers());
         coverFlow.setAdapter(offerAdapter);
         gridStores=(GridView)viewOffers.findViewById(R.id.grid_stores);
-        storeOfferAdapter=new StoreOfferAdapter(this.getActivity(),loadStore());
+        storeOfferAdapter=new StoreOfferAdapter(this.getActivity(),loadStoreOffers());
         gridStores.setAdapter(storeOfferAdapter);
         gridStores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Store storeSelect=(Store)adapterView.getItemAtPosition(i);
-                offerAdapter= new OffersAdapter(getActivity(),storeSelect.getListOffers());
+                offerAdapter= new OffersAdapter(getActivity(),(ArrayList<Offer>) storeSelect.getListOffers());
                 coverFlow.setAdapter(offerAdapter);
             }
         });
@@ -93,8 +96,22 @@ public class OffersFragment extends Fragment {
         return viewOffers;
     }
 
-    public ArrayList<Offer> chargeOffers(){
-        ArrayList<Offer> offerList=new ArrayList<>();
+    public ArrayList<Store> loadStoreOffers(){
+        ArrayList<Store> listStore= new ArrayList<>();
+
+        List<Offer> listOffer= Offer.findWithQuery(Offer.class, "SELECT * FROM "+DataBase.TABLE_OFFER+" GROUP BY "+DataBase.OFFER_STORE_ID, null);
+        for(Offer offer:listOffer){
+            listStore.add(offer.getStore());
+            System.out.println(offer.getStore().getName()+"\n*************///*****");
+        }
+        System.out.println("***********************\n"+listStore.size()+"\n*****************");
+        return listStore;
+    }
+
+    public List<Offer> chargeOffers(){
+
+        return Offer.listAll(Offer.class);
+       // ArrayList<Offer> offerList=new ArrayList<>();
 
 
            /* Date date = StringToDate.converToDate("30/11/2017");
@@ -119,29 +136,16 @@ public class OffersFragment extends Fragment {
             offerList.add(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.30.36-1509410491.jpg","Ibis","Visítanos y conoce nuestro catálogo de la última colección!!"));
             offerList.add(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.31.02-1509410576.jpg","Ibis","Visítanos y conoce nuestro catálogo de la última colección!!"));
             offerList.add(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.31.17-1509410682.jpg","Ibis","Visítanos y conoce nuestro catálogo de la última colección!!"));
-
-
-
-
 */
-
-
-
-
-
-
-
-
-
-
-
-        return offerList;
+        //return offerList;
     }
+
+
     private ArrayList<Store> loadStore(){
         ArrayList<Store> listStore=new ArrayList<>();
         Date date = StringToDate.converToDate("30/11/2017");
 
-       /* Offer offer1=new Offer(date,"https://campanariopopayan.com/images/ofertas/postccdigitaljeans109-1509581041.jpg","Studio F","Amamos los Jeans Studio F, solo por HOY llévatelos a $109.900 en nuestras tiendas y tienda online");
+      /*  Offer offer1=new Offer(date,"https://campanariopopayan.com/images/ofertas/postccdigitaljeans109-1509581041.jpg","Studio F","Amamos los Jeans Studio F, solo por HOY llévatelos a $109.900 en nuestras tiendas y tienda online");
         Store store1=new Store("Studio F", "8323060", "Local: 94","https://campanariopopayan.com/images/tiendas/tiendas/studio-f-1371581505.jpg");
         store1.addOffer(offer1);
 
@@ -204,8 +208,33 @@ public class OffersFragment extends Fragment {
         return listStore;
     }
     public void saveOffer(){
+        ArrayList<Store> listStore=new ArrayList<>();
+        Date date = StringToDate.converToDate("30/11/2017");
+
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/postccdigitaljeans109-1509581041.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Studio F").get(0),"Amamos los Jeans Studio F, solo por HOY llévatelos a $109.900 en nuestras tiendas y tienda online"));
+
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/instructivo30segundopar03nov01-1509725109.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Bubble Gummers").get(0),"Aprovecha el 30 % de descuento en el segundo artículo de igual o menor valor!!!"));
+
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/image002-1509725335.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Fuera de serie FDS").get(0),"Adelanta tus compras de navidad con un 30% DCTO en TODO!!! adicional un -30 % en prendas ya rebajadas."));
+
+       Offer.save(new Offer(StringToDate.converToDate("30/11/2017"),"https://campanariopopayan.com/images/ofertas/32-1509116973.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Arturo Calle").get(0),"Visítanos en nuestra de campanario Popayán LOCAL 126"));
+        Offer.save(new Offer(StringToDate.converToDate("30/11/2017"),"https://campanariopopayan.com/images/ofertas/32-1509116973.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Arturo Calle").get(0),"Visítanos en nuestra de campanario Popayán LOCAL 126"));
+        Offer.save(new Offer(StringToDate.converToDate("30/11/2017"),"https://campanariopopayan.com/images/ofertas/4-1509117008.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Arturo Calle").get(0),"Visítanos en nuestra de campanario Popayán LOCAL 126"));
+        Offer.save(new Offer(StringToDate.converToDate("30/11/2017"),"https://campanariopopayan.com/images/ofertas/52-1509117047.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Arturo Calle").get(0),"Visítanos en nuestra de campanario Popayán LOCAL 126"));
+        Offer.save(new Offer(StringToDate.converToDate("30/11/2017"),"https://campanariopopayan.com/images/ofertas/13-1509117970.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Arturo Calle").get(0),"Visítanos en nuestra de campanario Popayán LOCAL 126"));
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/22-1509116928.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Arturo Calle").get(0),"Visítanos en nuestra de campanario Popayán LOCAL 126"));
 
 
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.29.35-1509410097.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Ibis").get(0),"Visítanos y conoce nuestro catálogo de la última colección!!"));
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.29.35-1509410097.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Ibis").get(0),"Visítanos y conoce nuestro catálogo de la última colección!!"));
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.29.59-1509410170.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Ibis").get(0),"Visítanos y conoce nuestro catálogo de la última colección!!"));
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.30.18-1509410252.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Ibis").get(0),"Visítanos y conoce nuestro catálogo de la última colección!!"));
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.30.36-1509410491.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Ibis").get(0),"Visítanos y conoce nuestro catálogo de la última colección!!"));
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.31.02-1509410576.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Ibis").get(0),"Visítanos y conoce nuestro catálogo de la última colección!!"));
+        Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/capturadepantalla20171030alas18.31.17-1509410682.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Ibis").get(0),"Visítanos y conoce nuestro catálogo de la última colección!!"));
+
+
+        persistenceData.setSaveOffer(true);
     }
 
 

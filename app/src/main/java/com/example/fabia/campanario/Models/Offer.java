@@ -38,6 +38,13 @@ public class Offer extends SugarRecord{
         this.description=description;
     }
 
+    public Offer(Date dateInitial, String urlPhoto, Long id_store, String description) {
+        this.dateInitial = dateInitial;
+        this.urlPhoto = urlPhoto;
+        this.store = Store.findById(Store.class,id_store);
+        this.description=description;
+    }
+
 
     public Offer(Date dateInitial, Date dateFinal, String urlPhoto, Store store) {
         this.dateInitial = dateInitial;
