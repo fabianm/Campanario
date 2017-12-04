@@ -110,7 +110,14 @@ public class DataBase extends SQLiteOpenHelper {
             NOTIFICATION_DATE + " date not null, " +
             NOTIFICATION_URL_PHOTO + " text);";
 
-
+    public static final String TABLE_PQRS="PQRS";
+    public static final String PQRS_ID="PQRS_id";
+    public static final String PQRS_TYPE="PQRS_type";
+    public static final String PQRS_STATE="PQRS_state";
+    public static final String PQRS_REQUEST="PQRS_request";
+    public static final String PQRS_RESPONSE="PQRS_response";
+    public static final String PQRS_DATE_REQUEST="PQRS_date_request";
+    public static final String PQRS_DATE_RESPONSE="PQRS_date_response";
 
     private static DataBase dataBase;
 
