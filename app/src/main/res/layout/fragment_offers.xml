@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:coverflow="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/fondoofertas"
     tools:context="com.example.fabia.campanario.Fragments.OffersFragment">
 
     <LinearLayout
@@ -32,7 +33,7 @@
             android:id="@+id/grid_stores"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_weight="3.9"
             android:numColumns="1"
             />
     </LinearLayout>

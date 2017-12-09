@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.example.fabia.campanario.Fragments.DirectoryFragment;
@@ -22,6 +24,9 @@ import com.example.fabia.campanario.Helpers.DataBase;
 import com.orm.SugarContext;
 
 public class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    String url2="https://campanariopopayan.com/";
+
 
     private FragmentManager fragmentManager;
     private  DrawerLayout drawer;
@@ -42,6 +47,11 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         navigation.setNavigationItemSelectedListener(this);
 
         fragmentManager=getSupportFragmentManager();
+
+        WebView web = (WebView) findViewById(R.id.webcampanario);
+        WebSettings settings= web.getSettings();
+        settings.setJavaScriptEnabled(true);
+        web.loadUrl(url2);
     }
 
     @Override

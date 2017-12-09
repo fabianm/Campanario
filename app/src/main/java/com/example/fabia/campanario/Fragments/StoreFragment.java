@@ -74,6 +74,7 @@ public class StoreFragment extends Fragment {
         Category category1=Category.findByName(getString(R.string.menu_title_food_drink));
         Store store1=new Store("Capriccio", "8323053", "Local: 25", "https://campanariopopayan.com/images/tiendas/tiendas/capriccio.png");
        Store store2=new Store("Copoazu", "323-30-9237", "Local: (Kiosko Techo) KT4", "https://campanariopopayan.com/images/tiendas/tiendas/copoazu.png");
+        Store store19=new Store("Cosechas", "(4)4440980 Opc.4 Ext 3", "------", "https://campanariopopayan.com/images/ofertas/postcc23-1512658173.jpg");
         Store store3=new Store("Frisby", "8367957", "Local: C10", "https://campanariopopayan.com/images/tiendas/tiendas/frisby-1371577815.jpg");
         Store store4=new Store("Hamburguesas El Corral", "8323082", "Local: C9", "https://campanariopopayan.com/images/tiendas/tiendas/hamburguesas-el-corral-1371577533.jpg");
         Store store5=new Store("Helados MIMO'S", "8323157", "Local: 68", "https://campanariopopayan.com/images/tiendas/tiendas/helados-mimos-1371575246.jpg");
@@ -90,8 +91,10 @@ public class StoreFragment extends Fragment {
         Store store16=new Store("Tacos & Bar.BQ", "8323282", "Local: C8", "https://campanariopopayan.com/images/tiendas/tiendas/tacos-barbq-1371577269.jpg");
         Store store17=new Store("Tierra Blanca", "312-765-0199", "Local: (Kiosko Bar) KB5", "https://campanariopopayan.com/images/tiendas/tiendas/tierra-blanca.png");
         Store store18=new Store("Urabana", "8353529", "Local: C-2", "https://campanariopopayan.com/images/tiendas/tiendas/urabana-1421771051.jpg");
+
         store1.save();
         store2.save();
+        store19.save();
         store3.save();
         store4.save();
         store5.save();
@@ -110,6 +113,7 @@ public class StoreFragment extends Fragment {
         store18.save();
         PertaintoCategory.save(new PertaintoCategory(store1,category1));
         PertaintoCategory.save(new PertaintoCategory(store2,category1));
+        PertaintoCategory.save(new PertaintoCategory(store19,category1));
        PertaintoCategory.save(new PertaintoCategory(store3,category1));
         PertaintoCategory.save(new PertaintoCategory(store4,category1));
         PertaintoCategory.save(new PertaintoCategory(store5,category1));
@@ -126,6 +130,7 @@ public class StoreFragment extends Fragment {
         PertaintoCategory.save(new PertaintoCategory(store16,category1));
         PertaintoCategory.save(new PertaintoCategory(store17,category1));
         PertaintoCategory.save(new PertaintoCategory(store18,category1));
+
 
         Category category2=Category.findByName(getString(R.string.menu_title_fashion));
         Store store21=new Store("Adrissa", "8353590", "Local: 30", "https://campanariopopayan.com/images/tiendas/tiendas/adrissa-1399132373.jpg" );
@@ -149,6 +154,8 @@ public class StoreFragment extends Fragment {
         Store store219=new Store("Fuera de serie FDS", "8232821", "Local: 19", "https://campanariopopayan.com/images/tiendas/tiendas/fuera-de-serie-fds-1395947876.jpg" );
         Store store220=new Store("Ibis", "8201457", "Local: 65", "https://campanariopopayan.com/images/tiendas/tiendas/ibis-1371580542.jpg" );
         Store store221=new Store("Studio F", "8323060", "Local: 94", "https://campanariopopayan.com/images/tiendas/tiendas/studio-f-1371581505.jpg" );
+        Store store222=new Store("OxFord", "-----", "Local: 127", "https://campanariopopayan.com/images/tiendas/tiendas/tienda-campanario.jpg" );
+
         store21.save();
         store22.save();
         store23.save();
@@ -170,6 +177,7 @@ public class StoreFragment extends Fragment {
         store219.save();
         store220.save();
         store221.save();
+        store222.save();
         PertaintoCategory.save(new PertaintoCategory(store21,category2));
         PertaintoCategory.save(new PertaintoCategory(store22, category2));
         PertaintoCategory.save(new PertaintoCategory(store23, category2));
@@ -191,7 +199,7 @@ public class StoreFragment extends Fragment {
         PertaintoCategory.save(new PertaintoCategory(store219, category2));
         PertaintoCategory.save(new PertaintoCategory(store220, category2));
         PertaintoCategory.save(new PertaintoCategory(store221, category2));
-
+        PertaintoCategory.save(new PertaintoCategory(store222, category2));
         Category category3=Category.findByName(getString(R.string.menu_title_home_technology));
         Store store31=new Store("Claro", "8369999", "Local: 54,55 y 56", "https://campanariopopayan.com/images/tiendas/tiendas/claro-1371574244.jpg" );
         Store store32=new Store("Colchones Comodísimos", "8201174", "Local: 85", "https://campanariopopayan.com/images/tiendas/tiendas/colchones-comodisimos-1457551116.jpg" );

@@ -210,6 +210,27 @@ public class OffersFragment extends Fragment {
     public void saveOffer(){
         ArrayList<Store> listStore=new ArrayList<>();
         Date date = StringToDate.converToDate("30/11/2017");
+        Date date2 = StringToDate.converToDate("24/12/2017");
+        Date date3 = StringToDate.converToDate("10/12/2017");
+        Date date4 = StringToDate.converToDate("31/12/2017");
+
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/batido800x800-1511903421.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Cosechas").get(0),"inicia tu día refrescándote y compartiendo un #Cosechas Banano, Papaya, Naranja."));
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/post800x800-1511903459.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Cosechas").get(0),"Déjate sorprender por el delicioso sabor de un Mojito, hecho a base de manzana, piña y yerbabuena #Cosechas."));
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/post1cc2-1512658125.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Cosechas").get(0),"Aún estas a tiempo de #CaerEnTentación con nuestro batido de Temporada, hecho a base de gulupa, sandía y arándanos.*****Válido hasta agotar existencias"));
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/postcc23-1512658173.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Cosechas").get(0),"Inicia tu día con el inigualable sabor de un #Cosechas Tropical, hecho a base de banano, piña y aguacate de nuestra línea de batidos Verdes."));
+
+        Offer.save(new Offer(date2,"https://campanariopopayan.com/images/ofertas/image15-1512052539.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","OxFord").get(0),"Llego navidad, la mejor época para compartir al lado de tu marca favorita #OXFORDJEANS"));
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/image16-1512052808.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","OxFord").get(0),"GANATE UNA PINTA CON #OXFORDJEANS"));
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/image18-1512170012.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","OxFord").get(0),"Te deseamos ¡feliz cumpleaños! y queremos festejarlo contigo. Te obsequiamos 20% DCTO en la primera compra que realices durante el mes de tu cumpleaños. * Aplican condiciones y restricciones.."));
+
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/adrissanovsemana4-1511824967.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Adrissa").get(0),"Adrissa te invita a su tienda para ser la primera en conocer la ultima colección. Esta blusa envolvente en manga sisa, falda en velvet con estampado floral.Visitanos en el local 30."));
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/adrissadicsemana1-1512658236.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Adrissa").get(0),"En Adrissa encuentras este vestido floral estampado, con tiras en hombro para anudar y asimetria con bolero. Visitanos en el local 30."));
+
+        Offer.save(new Offer(date3,"https://campanariopopayan.com/images/ofertas/navidadceliogenerica-1512004466.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Celio*").get(0),"xmas en celio*, compra un jean y recibe 50%Off en una camiseta o una polo. Términos y condiciones en tienda. Valido del 1 al 10 de Diciembre de 2017."));
+
+        Offer.save(new Offer(date2,"https://campanariopopayan.com/images/ofertas/pizap2-1511478032.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Surtitodo").get(0),"Llega la navidad, época para brillar!!!"));
+        Offer.save(new Offer(date2,"https://campanariopopayan.com/images/ofertas/pizap1-1511478091.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Surtitodo").get(0),"Llega la navidad, época para brillar!!!"));
+        Offer.save(new Offer(date4,"https://campanariopopayan.com/images/ofertas/pizap5-1511477803.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Surtitodo").get(0),"Brilla con nosotros esta navidad!!"));
 
         Offer.save(new Offer(date,"https://campanariopopayan.com/images/ofertas/postccdigitaljeans109-1509581041.jpg",Store.find(Store.class, DataBase.STORE_NAME+" = ?","Studio F").get(0),"Amamos los Jeans Studio F, solo por HOY llévatelos a $109.900 en nuestras tiendas y tienda online"));
 

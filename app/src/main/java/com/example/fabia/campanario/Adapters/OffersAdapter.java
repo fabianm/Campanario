@@ -64,6 +64,7 @@ public class OffersAdapter extends BaseAdapter {
             Picasso.with(activity).load(offerTemp.getUrlPhoto()).into(viewOfferHolder.img_offer);
         }
         viewOfferHolder.txt_description_offer.setText(offerTemp.getDescription());
+        viewOfferHolder.txt_date_offer.setText(offerTemp.getDateInitial().toString());
 
 
 
