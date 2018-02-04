@@ -14,8 +14,9 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <!--android:background="@drawable/fondoofferstore"-->
         <RelativeLayout
-            android:background="@drawable/fondoofferstore"
+
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_imgCardView">
             <ImageView
@@ -50,10 +51,8 @@
                 android:src="@drawable/img_down"
 
                 />
-
         </LinearLayout>
         <LinearLayout
-            android:background="@drawable/fondoofferstore"
             android:id="@+id/content_description_car"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

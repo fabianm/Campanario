@@ -7,8 +7,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:background="@drawable/fondotiendas"
         android:layout_height="match_parent">
+<!--        android:background="@drawable/fondotiendas"-->
 
         <GridView
             android:id="@+id/grid_store_category"

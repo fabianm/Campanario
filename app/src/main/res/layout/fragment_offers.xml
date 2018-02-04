@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:coverflow="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/fondoofertas"
-    tools:context="com.example.fabia.campanario.Fragments.OffersFragment">
 
+    tools:context="com.example.fabia.campanario.Fragments.OffersFragment">
+    <!--android:background="@drawable/fondoofertas"-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

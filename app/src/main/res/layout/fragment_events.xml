@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondoeventos"
     tools:context="com.example.fabia.campanario.Fragments.EventsFragment">
+    <!--android:background="@drawable/fondoeventos"-->
 
     <LinearLayout
         android:orientation="vertical"
