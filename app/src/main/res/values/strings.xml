@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Campanario</string>
+    <string name="app_name">Centros</string>
     <string name="txt_title">Centro Comercial Campanario</string>
     <!-- title of items menu drawer-->
     <string name="menu_title_store">Tiendas</string>

@@ -16,12 +16,26 @@ import java.util.List;
 @Table(name = DataBase.TABLE_CATEGORY)
 public class Category extends SugarRecord {
     @NotNull
+    @Column(name= DataBase.CATEGORY_ID)
+    private Long id;
+    @NotNull
     @Column(name = DataBase.CATEGORY_NAME)
     private String name;
     @Column(name = DataBase.CATEGORY_DESCRIPTION)
     private String description;
 
     public Category(){
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+        this.id = id;
     }
 
     public Category(String name, String description) {

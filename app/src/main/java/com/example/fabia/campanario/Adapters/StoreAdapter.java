@@ -54,8 +54,8 @@ public class StoreAdapter extends BaseAdapter {
             viewStoreHolder= new ViewStoreHolder();
             viewStoreHolder.img_store=(ImageView)viewResult.findViewById(R.id.img_store);
             viewStoreHolder.txt_store_name=(TextView) viewResult.findViewById(R.id.txt_store_name);
-            viewStoreHolder.txt_store_ubication=(TextView) viewResult.findViewById(R.id.txt_store_ubication);
-            viewStoreHolder.txt_store_numberTelephone=(TextView) viewResult.findViewById(R.id.txt_store_numberTelephone);
+           /* viewStoreHolder.txt_store_ubication=(TextView) viewResult.findViewById(R.id.txt_store_ubication);
+            viewStoreHolder.txt_store_numberTelephone=(TextView) viewResult.findViewById(R.id.txt_store_numberTelephone);*/
             viewResult.setTag(viewStoreHolder);
         }else{
             viewStoreHolder=(ViewStoreHolder)viewResult.getTag();

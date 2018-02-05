@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.fabia.campanario.Models.Store;
 import com.example.fabia.campanario.R;
 import com.example.fabia.campanario.ViewHolders.ViewCardHolder;
@@ -55,7 +56,7 @@ public View getView(int i, View view, ViewGroup viewGroup) {
                 viewResult=layoutInflater.inflate(R.layout.card_view_store,null);
                 viewStoreHolder= new ViewCardHolder();
                 viewStoreHolder.img_store_card=(ImageView)viewResult.findViewById(R.id.img_store_card);
-                viewStoreHolder.txt_description_store_card=(TextView) viewResult.findViewById(R.id.txt_description_store_card);
+                //viewStoreHolder.txt_description_store_card=(TextView) viewResult.findViewById(R.id.txt_description_store_card);
                 viewStoreHolder.txt_name_store_card=(TextView) viewResult.findViewById(R.id.txt_name_store_card);
 
                 viewResult.setTag(viewStoreHolder);
@@ -66,11 +67,15 @@ public View getView(int i, View view, ViewGroup viewGroup) {
         viewStoreHolder.txt_name_store_card.setText(tempStore.getName());
 
         if(tempStore.getUrlLogo()!=null && !tempStore.getUrlLogo().isEmpty()){
-            Picasso.with(this.activity).load(tempStore.getUrlLogo()).into(viewStoreHolder.img_store_card);
+                Glide.with(activity)
+                        .load(tempStore.getUrlLogo())
+                        .centerCrop()
+                        .into(viewStoreHolder.img_store_card);
+            //Picasso.with(this.activity).load(tempStore.getUrlLogo()).into(viewStoreHolder.img_store_card);
         }else{
             Picasso.with(this.activity).load(R.drawable.img_store_default).into(viewStoreHolder.img_store_card);
         }
-        viewStoreHolder.txt_description_store_card.setText(tempStore.getDescription());
+//        viewStoreHolder.txt_description_store_card.setText(tempStore.getDescription());
 
        /* viewStoreHolder..setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -5,29 +5,54 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.fabia.campanario.Adapters.StoreAdapter;
+import com.example.fabia.campanario.Adapters.StoreCardAdapter;
 import com.example.fabia.campanario.Helpers.DataBase;
 import com.example.fabia.campanario.Models.Category;
+import com.example.fabia.campanario.Models.Center;
 import com.example.fabia.campanario.Models.PertaintoCategory;
 import com.example.fabia.campanario.Models.Store;
 import com.example.fabia.campanario.Persistence.PersistenceData;
+import com.example.fabia.campanario.Pojos.CategoryPOJO;
+import com.example.fabia.campanario.Pojos.CenterPOJO;
+import com.example.fabia.campanario.Pojos.PertaintoCategoryPOJO;
+import com.example.fabia.campanario.Pojos.StorePOJO;
 import com.example.fabia.campanario.R;
+import com.example.fabia.campanario.Utilities.ClientWS;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.orm.SugarContext;
 import com.orm.SugarRecord;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class StoreFragment extends Fragment {
-    private StoreAdapter storeAdapter;
-    private GridView grid_Store;
+    //private StoreAdapter storeAdapter;
+    private StoreCardAdapter storeAdapter;
+    private RecyclerView grid_Store;
+    //private GridView grid_Store;
     private PersistenceData persistenceData;
+    private int categorySelected;
 
 
     public StoreFragment() {
@@ -44,33 +69,62 @@ public class StoreFragment extends Fragment {
         View viewStore = inflater.inflate(R.layout.fragment_store, container, false);
         SugarContext.init(getContext());
 
-        int category = getArguments().getInt("category");
+        categorySelected = getArguments().getInt("category");
         persistenceData = new PersistenceData(getContext());
 
 
 
-        if (!persistenceData.isSaveCategory()) {
+      /*  if (!persistenceData.isSaveCategory()) {
             saveCategory();
             System.out.println("Se guardaron las categorias");
         }else{
             System.out.println("no se guardo la informacion\n*******\n***\n***");
+        }*/
+        grid_Store = (RecyclerView) viewStore.findViewById(R.id.grid_store_category);
+        //grid_Store = (GridView) viewStore.findViewById(R.id.grid_store_category);
+        grid_Store.setHasFixedSize(true);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        grid_Store.setLayoutManager(mLayoutManager);
+        if (!persistenceData.isSaveCenter()) {
+            loadCenters();
+            System.out.println("Se guardaron los centrso");
+
+        }else{
+            storeAdapter = new StoreCardAdapter(grid_Store); // = new StoreAdapter(this.getActivity(), loadStore(categorySelected));
+            grid_Store.setAdapter(storeAdapter);
+            storeAdapter.setStoreList(loadStore(categorySelected));
         }
 
-        if (!persistenceData.isSaveStore()) {
+       /* if (!persistenceData.isSaveStore()) {
             saveStore();
             System.out.println("Se guardaron las tiendas");
 
         }else{
             System.out.println("no se guardo la informacion\n*******\n***\n***");
-        }
-        storeAdapter = new StoreAdapter(this.getActivity(), loadStore(category));
-        grid_Store = (GridView) viewStore.findViewById(R.id.grid_store_category);
-        grid_Store.setAdapter(storeAdapter);
+        }*/
+//        storeAdapter = new StoreAdapter(this.getActivity(), loadStore(category));
+       // grid_Store.setAdapter(storeAdapter);
 
         return viewStore;
     }
 
     private void saveStore() {
+        loadStores();
+    }
+
+    private void saveCenters() {
+        loadCenters();
+
+
+
+
+
+
+
+    }
+
+
+   /* private void saveStore() {
         Category category1=Category.findByName(getString(R.string.menu_title_food_drink));
         Store store1=new Store("Capriccio", "8323053", "Local: 25", "https://campanariopopayan.com/images/tiendas/tiendas/capriccio.png");
        Store store2=new Store("Copoazu", "323-30-9237", "Local: (Kiosko Techo) KT4", "https://campanariopopayan.com/images/tiendas/tiendas/copoazu.png");
@@ -368,9 +422,169 @@ public class StoreFragment extends Fragment {
         persistenceData.setSaveStore(true);
 
 
+    }*/
+
+   public void loadCenters(){
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ClientWS.urlWS).addConverterFactory(GsonConverterFactory.create(gson)).build();
+        ClientWS restClient = retrofit.create(ClientWS.class);
+        Call<List<CenterPOJO>> call = restClient.getCenters();
+        call.enqueue(new Callback<List<CenterPOJO>>() {
+            @Override
+            public void onResponse(Call<List<CenterPOJO>> call, Response<List<CenterPOJO>> response) {
+                switch (response.code()) {
+                    case 200:
+                        List<CenterPOJO> categories_data = response.body();
+                        for(CenterPOJO c:categories_data){
+                            Center newCategory= new Center();
+                            newCategory.setId(c.getS_center_id());
+                            newCategory.setAddress(c.getS_center_address());
+                            newCategory.setBusinness_hours(c.getS_center_businness_hours());
+                            newCategory.setName(c.getS_center_name());
+                            newCategory.setTelephone(c.getS_center_telephone());
+                            newCategory.save();
+                            System.out.println("Centro ID bd interna"+newCategory.getId() + "CENTRO bd Externa: "+c.getS_center_id());
+
+                        }
+                        persistenceData.setSaveCenter(true);
+                        saveCategory();
+                        break;
+                    case 404:
+                        Toast.makeText(getActivity(), "Page no fount", Toast.LENGTH_SHORT);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            @Override
+            public void onFailure(Call<List<CenterPOJO>> call, Throwable t) {
+                Log.e("Error WS", "Error en la llamada al WS");
+            }
+        });
+    }
+    public void loadPertain(){
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ClientWS.urlWS).addConverterFactory(GsonConverterFactory.create(gson)).build();
+        ClientWS restClient = retrofit.create(ClientWS.class);
+        Call<List<PertaintoCategoryPOJO>> call = restClient.getPertain();
+        call.enqueue(new Callback<List<PertaintoCategoryPOJO>>() {
+            @Override
+            public void onResponse(Call<List<PertaintoCategoryPOJO>> call, Response<List<PertaintoCategoryPOJO>> response) {
+                switch (response.code()) {
+                    case 200:
+                        List<PertaintoCategoryPOJO> categories_data = response.body();
+                        for(PertaintoCategoryPOJO c:categories_data){
+                            PertaintoCategory newCategory= new PertaintoCategory();
+                            newCategory.setStore(Store.findById(Store.class,c.getStore_id()));
+                            newCategory.setCategory(Category.findById(Category.class,c.getCategory_id()));
+                            newCategory.save();
+                            System.out.println("CATEGORY ID bd interna"+newCategory.getId() + "CATEGORY bd Externa: "+c.getStore_id());
+
+                        }
+                        //storeAdapter = new StoreAdapter(getActivity(), loadStore(categorySelected));
+                        storeAdapter = new StoreCardAdapter(grid_Store);
+                        grid_Store.setAdapter(storeAdapter);
+
+                        storeAdapter.setStoreList(loadStore(categorySelected));
+
+
+                        break;
+                    case 404:
+                        Toast.makeText(getActivity(), "Page no fount", Toast.LENGTH_SHORT);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            @Override
+            public void onFailure(Call<List<PertaintoCategoryPOJO>> call, Throwable t) {
+                Log.e("Error WS", "Error en la llamada al WS");
+            }
+        });
     }
 
-    private void saveCategory(){
+    public void loadStores(){
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ClientWS.urlWS).addConverterFactory(GsonConverterFactory.create(gson)).build();
+        ClientWS restClient = retrofit.create(ClientWS.class);
+        Call<List<StorePOJO>> call = restClient.getStores();
+        call.enqueue(new Callback<List<StorePOJO>>() {
+            @Override
+            public void onResponse(Call<List<StorePOJO>> call, Response<List<StorePOJO>> response) {
+                switch (response.code()) {
+                    case 200:
+                        List<StorePOJO> categories_data = response.body();
+                        for(StorePOJO c:categories_data){
+                            Store newCategory= new Store();
+                            newCategory.setId(c.getStore_id());
+                            newCategory.setCenter(Center.findById(Center.class,c.getS_center_id()));
+                            newCategory.setBusiness_hours(c.getStore_business_hours());
+                            newCategory.setDescription(c.getStore_description());
+                            newCategory.setName(c.getStore_name());
+                            newCategory.setUrlLogo(c.getStore_url_logo());
+                            newCategory.setNumberTelephone(c.getStore_telephone());
+                            newCategory.setUrlWebPage(c.getStore_url_webpage());
+                            newCategory.setUbication(c.getStore_ubication());
+                            newCategory.save();
+                            System.out.println("CATEGORY ID bd interna"+newCategory.getId() + "CATEGORY bd Externa: "+c.getS_center_id());
+
+                        }
+                        persistenceData.setSaveStore(true);
+                        loadPertain();
+                        break;
+                    case 404:
+                        Toast.makeText(getActivity(), "Page no fount", Toast.LENGTH_SHORT);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            @Override
+            public void onFailure(Call<List<StorePOJO>> call, Throwable t) {
+                Log.e("Error WS", "Error en la llamada al WS");
+            }
+        });
+    }
+
+    public void saveCategory(){
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ClientWS.urlWS).addConverterFactory(GsonConverterFactory.create(gson)).build();
+        ClientWS restClient = retrofit.create(ClientWS.class);
+        Call<List<CategoryPOJO>> call = restClient.getCategories();
+        call.enqueue(new Callback<List<CategoryPOJO>>() {
+            @Override
+            public void onResponse(Call<List<CategoryPOJO>> call, Response<List<CategoryPOJO>> response) {
+                switch (response.code()) {
+                    case 200:
+                        List<CategoryPOJO> categories_data = response.body();
+                        for(CategoryPOJO c:categories_data){
+                            Category newCategory= new Category();
+                            newCategory.setId(c.getCategory_id());
+                            newCategory.setDescription(c.getCategory_description());
+                            newCategory.setName(c.getCategory_name());
+                            newCategory.save();
+                            System.out.println("CATEGORY ID bd interna"+newCategory.getId() + "CATEGORY bd Externa: "+c.getCategory_id());
+
+                        }
+                        persistenceData.setSaveCategory(true);
+                        loadStores();
+                        break;
+                    case 404:
+                        Toast.makeText(getActivity(), "Page no fount", Toast.LENGTH_SHORT);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            @Override
+            public void onFailure(Call<List<CategoryPOJO>> call, Throwable t) {
+                Log.e("Error WS", "Error en la llamada al WS");
+            }
+        });
+    }
+
+    /*private void saveCategory(){
+
         SugarRecord.save(new Category(getString(R.string.menu_title_food_drink)));
         SugarRecord.save(new Category(getString(R.string.menu_title_fashion)));
         SugarRecord.save(new Category(getString(R.string.menu_title_home_technology)));
@@ -379,7 +593,7 @@ public class StoreFragment extends Fragment {
         SugarRecord.save(new Category(getString(R.string.menu_title_hypermarket)));
         SugarRecord.save(new Category(getString(R.string.menu_title_others)));
 
-        /*Category category1=new Category(getString(R.string.menu_title_food_drink));
+        *//*Category category1=new Category(getString(R.string.menu_title_food_drink));
         Category category2=new Category(getString(R.string.menu_title_fashion));
         Category category3=new Category(getString(R.string.menu_title_home_technology));
         Category category4=new Category(getString(R.string.menu_title_accessories));
@@ -392,9 +606,9 @@ public class StoreFragment extends Fragment {
         category4.save();
         category5.save();
         category6.save();
-        category7.save();*/
+        category7.save();*//*
         persistenceData.setSaveCategory(true);
-    }
+    }*/
 
     private ArrayList<Store> loadStore2() {
         ArrayList<Store> listStore;

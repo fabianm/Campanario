@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 <!--        android:background="@drawable/fondotiendas"-->
 
-        <GridView
+        <!--<GridView
             android:id="@+id/grid_store_category"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -19,7 +19,14 @@
             android:verticalSpacing="10dp"
             android:horizontalSpacing="5dp">
 
-        </GridView>
+        </GridView>-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grid_store_category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE"
+            android:paddingTop="10dp"
+            android:scrollbars="vertical" />
 
 
     </LinearLayout>

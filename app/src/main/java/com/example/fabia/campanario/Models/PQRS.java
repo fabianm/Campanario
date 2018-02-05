@@ -11,8 +11,8 @@ import java.util.Date;
 /**
  * Created by fabia on 4/12/2017.
  */
-@Table(name= DataBase.TABLE_PQRS)
-public class PQRS extends SugarRecord {
+//@Table(name= DataBase.TABLE_PQRS)
+public class PQRS {/*extends {/*SugarRecord {
     @NotNull
     @Column(name=DataBase.PQRS_TYPE)
     private String type;
@@ -86,5 +86,5 @@ public class PQRS extends SugarRecord {
 
     public void setDateResponse(Date dateResponse) {
         this.dateResponse = dateResponse;
-    }
+    }*/
 }

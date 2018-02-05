@@ -3,9 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Campanario.iml" filepath="$PROJECT_DIR$/Campanario.iml" />
+      <module fileurl="file://C:\Github\Campanario\Campanario.iml" filepath="C:\Github\Campanario\Campanario.iml" />
       <module fileurl="file://C:\Users\DIEGO\Documents\Github\Campanario\Campanario.iml" filepath="C:\Users\DIEGO\Documents\Github\Campanario\Campanario.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\DIEGO\Documents\Github\Campanario\app\app.iml" filepath="C:\Users\DIEGO\Documents\Github\Campanario\app\app.iml" />
+      <module fileurl="file://C:\Github\Campanario\app\app.iml" filepath="C:\Github\Campanario\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -80,7 +80,7 @@
 
 
 
-    <item android:id="@+id/item_other4"
+   <!-- <item android:id="@+id/item_other4"
         android:icon="@drawable/img_events"
         android:title="@string/menu_title_events">
         <menu >
@@ -92,8 +92,8 @@
 
             </group>
         </menu>
-    </item>
-    <item android:id="@+id/item_other5"
+    </item>-->
+   <!-- <item android:id="@+id/item_other5"
         android:icon="@drawable/img_events"
         android:title="@string/menu_title_pqrs">
         <menu >
@@ -105,7 +105,7 @@
 
             </group>
         </menu>
-    </item>
+    </item>-->
 
 
 </menu>

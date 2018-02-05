@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.fabia.campanario.Models.Offer;
 import com.example.fabia.campanario.R;
 import com.example.fabia.campanario.ViewHolders.ViewOfferHolder;
@@ -61,6 +62,10 @@ public class OffersAdapter extends BaseAdapter {
         Offer offerTemp=listOffer.get(i);
         viewOfferHolder.txt_store_offer.setText(offerTemp.getStore().getName());
         if(offerTemp.getUrlPhoto()!=null){
+           /* Glide.with(activity)
+                    .load(offerTemp.getUrlPhoto())
+                    .centerCrop()
+                    .into(viewOfferHolder.img_offer);*/
             Picasso.with(activity).load(offerTemp.getUrlPhoto()).into(viewOfferHolder.img_offer);
         }
         viewOfferHolder.txt_description_offer.setText(offerTemp.getDescription());

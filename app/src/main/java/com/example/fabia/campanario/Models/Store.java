@@ -16,6 +16,9 @@ import java.util.List;
 @Table(name = DataBase.TABLE_STORE)
 public class Store extends SugarRecord{
     @NotNull
+    @Column(name = DataBase.STORE_ID)
+    private Long id;
+    @NotNull
     @Column(name=DataBase.STORE_NAME)
     private String name;
     @Column(name=DataBase.STORE_TELEPHONE)
@@ -31,16 +34,26 @@ public class Store extends SugarRecord{
     private String business_hours;
     @Column(name=DataBase.STORE_WEBPAGE)
     private String urlWebPage;
-    
+    @Column(name=DataBase.STORE_CENTER)
+    private Center center;
 
     public Store() {
 
        // this.listOffers=new ArrayList<>();
     }
 
+    @Override
+    public Long getId() {
+        return id;
+    }
 
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+        this.id = id;
+    }
 
-    public Store(String name,String numberTelephone,  String ubication, String urlLogo) {
+    public Store(String name, String numberTelephone, String ubication, String urlLogo) {
         this.name = name;
         this.ubication = ubication;
         this.urlLogo = urlLogo;
@@ -160,4 +173,11 @@ public class Store extends SugarRecord{
         return result;
     }
 
-   }
+    public Center getCenter() {
+        return center;
+    }
+
+    public void setCenter(Center center) {
+        this.center = center;
+    }
+}

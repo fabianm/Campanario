@@ -35,6 +35,7 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String STORE_CATEGORY_ID="store_category_id";
     public static final String STORE_TELEPHONE="store_numberTelephone";
     public static final String STORE_WEBPAGE="store_urlWebPage";
+    public static final String STORE_CENTER="s_center_id";
 
     public static final String TABLE_PERTAIN_CATEGORY="pertain_category";
     public static final String PERTAIN_CATEGORY_ID="category_id";
@@ -43,10 +44,11 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String TABLE_OFFER = "offer";
     public static final String OFFER_ID = "offer_id";
     public static final String OFFER_STORE_ID = "offer_store_id";
-    public static final String OFFER_URL_PHOTO = "offer_url";
+    public static final String OFFER_URL_PHOTO = "offer_url_photo";
     public static final String OFFER_DESCRIPTION = "offer_description";
     public static final String OFFER_DATE_INITIAL="offer_date_initial";
     public static final String OFFER_DATE_FINAL="offer_date_final";
+    public static final String OFFER_STATE="offer_state";
 
     public static final String TABLE_EVENT = "event";
     public static final String EVENT_ID = "event_id";
@@ -55,6 +57,7 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String EVENT_DESCRIPTION = "event_description";
     public static final String EVENT_DATE="event_date";
     public static final String EVENT_DAYS="event_days";
+    public static final String EVENT_UBICATION="event_ubication";
 
     public static final String TABLE_NOTIFICATION = "notification";
     public static final String NOTIFICATION_ID = "notification_id";
@@ -63,6 +66,12 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String NOTIFICATION_DESCRIPTION = "notification_description";
     public static final String NOTIFICATION_DATE="notification_date";
 
+    public static final String TABLE_SHOPPING_CENTER = "shopping_center";
+    public static final String CENTER_ID = "s_center_id";
+    public static final String CENTER_NAME = "s_center_name";
+    public static final String CENTER_ADDRESS = "s_center_address";
+    public static final String CENTER_TELEPHONE = "s_center_telephone";
+    public static final String CENTER_HOURS="s_center_businness_hours";
 
     private static final String SQL_CREATE_CATEGORY = "create table " +
             TABLE_CATEGORY + "(" +

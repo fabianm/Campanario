@@ -70,8 +70,8 @@ public class OffersFragment extends Fragment {
         View viewOffers=inflater.inflate(R.layout.fragment_offers, container, false);
         SugarContext.init(getContext());
 
-        linearLayoutDetails=(ViewGroup)viewOffers.findViewById(R.id.content_description_car);
-        imageViewExpand=(ImageView)viewOffers.findViewById(R.id.imageViewExpand);
+        /*linearLayoutDetails=(ViewGroup)viewOffers.findViewById(R.id.content_description_car);
+        imageViewExpand=(ImageView)viewOffers.findViewById(R.id.imageViewExpand);*/
         coverFlow= (FeatureCoverFlow) viewOffers.findViewById(R.id.coverflow);
         persistenceData=new PersistenceData(this.getContext());
         if(!persistenceData.isSaveOffer()){

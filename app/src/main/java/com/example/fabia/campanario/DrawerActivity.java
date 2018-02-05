@@ -107,12 +107,12 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 replaceFragmentContent(fragment);
                 break;
 
-            case R.id.item_events:
+            /*case R.id.item_events:
                  fragment=new EventsFragment();
                 replaceFragmentContent(fragment);
 
 
-                break;
+                break;*/
             case R.id.item_food_drink:
                  bundle = new Bundle();
                 bundle.putInt( "category",R.id.item_food_drink);
@@ -131,11 +131,11 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 replaceFragmentContent(fragment);
 
                 break;
-            case R.id.item_pqrs:
+           /* case R.id.item_pqrs:
                 fragment=new PQRFragment();
                 replaceFragmentContent(fragment);
 
-                break;
+                break;*/
             default:
                 toast=Toast.makeText(this,"defecto",Toast.LENGTH_SHORT);
                 break;

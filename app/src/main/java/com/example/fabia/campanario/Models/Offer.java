@@ -3,6 +3,7 @@ package com.example.fabia.campanario.Models;
 import com.example.fabia.campanario.Helpers.DataBase;
 import com.orm.SugarRecord;
 import com.orm.dsl.Column;
+import com.orm.dsl.NotNull;
 import com.orm.dsl.Table;
 
 import java.util.Date;
@@ -12,6 +13,9 @@ import java.util.Date;
  */
 @Table(name = DataBase.TABLE_OFFER)
 public class Offer extends SugarRecord{
+    @NotNull
+    @Column(name = DataBase.OFFER_ID)
+    private Long id;
     @Column(name = DataBase.OFFER_DATE_INITIAL)
     private Date dateInitial;
     @Column(name = DataBase.OFFER_DATE_FINAL)
@@ -22,8 +26,29 @@ public class Offer extends SugarRecord{
     private String description;
     @Column(name = DataBase.OFFER_STORE_ID)
     private Store store;
+    @Column(name = DataBase.OFFER_STATE)
+    private Integer state;
 
     public Offer() {
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+        this.id = id;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public Offer(Date dateInitial, String urlPhoto, Store store) {

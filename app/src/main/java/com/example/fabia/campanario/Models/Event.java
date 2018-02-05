@@ -2,6 +2,8 @@ package com.example.fabia.campanario.Models;
 
 import com.example.fabia.campanario.Helpers.DataBase;
 import com.orm.SugarRecord;
+import com.orm.dsl.Column;
+import com.orm.dsl.NotNull;
 import com.orm.dsl.Table;
 
 import java.util.Date;
@@ -11,15 +13,36 @@ import java.util.Date;
  */
 @Table(name = DataBase.TABLE_CATEGORY)
 public class Event extends SugarRecord {
+    @NotNull
+    @Column(name = DataBase.EVENT_ID)
+    private Long id;
+    @Column(name = DataBase.EVENT_DATE)
     private Date date;
+    @Column(name = DataBase.EVENT_DAYS)
+    private String days;
+    @Column(name = DataBase.EVENT_NAME)
     private String title;
-    private String description;
-    private String ubication;
+    @Column(name = DataBase.EVENT_URL_PHOTO)
     private String urlphoto;
+    @Column(name = DataBase.EVENT_DESCRIPTION)
+    private String description;
+    @Column(name = DataBase.EVENT_UBICATION)
+    private String ubication;
 
 
     public Event(){
 
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+        this.id = id;
     }
 
     public Event(Date date, String title, String description, String ubication) {

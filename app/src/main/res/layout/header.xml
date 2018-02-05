@@ -2,14 +2,25 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundHeader"
+    android:background="@color/colorBlack2"
     >
     <ImageView
         android:id="@+id/img_header"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_gravity="left|bottom"
+        android:src="@drawable/ic_logo_sale"
+        android:scaleType="fitXY"
+
+        />
+
+    <ImageView
+        android:id="@+id/img_header2"
         android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_gravity="left|center_vertical"
-        android:src="@drawable/img_logo_campanario"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:src="@drawable/centers_title"
+
         />
     <!--<TextView
         android:id="@+id/txt_header"

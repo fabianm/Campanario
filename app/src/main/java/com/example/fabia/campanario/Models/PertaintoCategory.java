@@ -17,7 +17,8 @@ public class PertaintoCategory extends SugarRecord {
 
     @NotNull
     @Column(name = DataBase.PERTAIN_STORE_ID)
-    private Long store;
+    //private Long store;
+    private Store store;
     @NotNull
     @Column(name = DataBase.PERTAIN_CATEGORY_ID)
     private Category category;
@@ -29,7 +30,8 @@ public class PertaintoCategory extends SugarRecord {
 
     public PertaintoCategory(Store store,Category category) {
         this.category = category;
-        this.store = store.getId();
+        this.store = store;
+        //this.store = store.getId();
     }
 
     public Category getCategory() {
@@ -40,14 +42,21 @@ public class PertaintoCategory extends SugarRecord {
         this.category = category;
     }
 
-    public Store getStore() {
+/*    public Store getStore() {
         Store store= Store.findById(Store.class,this.store);
         return store;
     }
     public void setStore(Store store) {
         this.store = store.getId();
+    }*/
+
+    public Store getStore() {
+        return store;
     }
 
+    public void setStore(Store store) {
+        this.store = store;
+    }
 
     public static PertaintoCategory getPertaintoCategory(){
         PertaintoCategory pertaintoCategory=PertaintoCategory.first(PertaintoCategory.class);
@@ -62,7 +71,12 @@ public class PertaintoCategory extends SugarRecord {
 
     public static List<Store> findStoreByCategory(String nameCategory){
         //Category category=Category.findByName(nameCategory);
-        Category category=((ArrayList<Category>) Category.find(    Category.class, DataBase.CATEGORY_NAME +" = ?",nameCategory)).get(0);
+        System.out.println("se va abuscar -"+nameCategory+"-");
+        List<Category> categories=Category.listAll(Category.class);
+        for(Category c:categories){
+            System.out.println(c.getName());
+        }
+        Category category=((ArrayList<Category>) Category.find(    Category.class, DataBase.CATEGORY_NAME +" = ? ",nameCategory)).get(0);
         System.out.println(category.getId()+"**************"+category.getName());
 
         System.out.println(category.getStores().size()+"++++5454+++++++ +545+++++++++++++");

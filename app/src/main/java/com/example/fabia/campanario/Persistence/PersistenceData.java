@@ -13,6 +13,7 @@ public class PersistenceData {
     private static final String SAVE_STORE = "save_store";
     private static final String SAVE_CATEGORY = "save_category";
     private static final String SAVE_OFFER = "save_offer";
+    private static final String SAVE_CENTER = "save_center";
 
 
     private Context context;
@@ -22,7 +23,8 @@ public class PersistenceData {
     }
 
     private SharedPreferences getSharedPreferences() {
-        return this.context.getSharedPreferences(NAME_FILE_SHARED_PREFERENCE, this.context.MODE_APPEND);
+        //return this.context.getSharedPreferences(NAME_FILE_SHARED_PREFERENCE, this.context.MODE_APPEND);
+        return this.context.getSharedPreferences(NAME_FILE_SHARED_PREFERENCE, Context.MODE_PRIVATE);
     }
 
     public boolean isLoadData() {
@@ -64,5 +66,16 @@ public class PersistenceData {
         editor.putBoolean(SAVE_OFFER, saveOffer);
         editor.commit();
     }
+
+    public boolean isSaveCenter() {
+        return getSharedPreferences().getBoolean(SAVE_CENTER, false);
+    }
+
+    public void setSaveCenter(boolean saveCenter) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        editor.putBoolean(SAVE_CENTER, saveCenter);
+        editor.commit();
+    }
+
 
 }
